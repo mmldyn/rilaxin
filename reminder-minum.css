@@ -1,0 +1,154 @@
+/* Palet warna SAMA PERSIS dengan gambar "reminder minum.png" dan palet RILAXIN */
+:root {
+    --primary-background-color: #D1DCEB; /* Background biru keunguan muda */
+    --primary-text-color: #333333;       /* Teks default (hitam pekat) */
+    --accent-text-color: #374785;        /* Teks biru keunguan gelap untuk ikon */
+    --shadow-light: rgba(0, 0, 0, 0.05); /* Bayangan lembut */
+    /* Animasi masuk */
+    --enter-animation-duration: 800ms;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: var(--primary-background-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    box-sizing: border-box;
+    overflow: hidden; /* Mencegah scrollbar saat animasi */
+}
+
+/* Keyframes untuk Animasi Masuk (Fade In & Slide Up) */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Mulai 20px di bawah posisi akhir */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Berakhir di posisi normal */
+    }
+}
+
+/* Header Styling (konsisten dengan halaman lain) */
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Hanya ikon di kiri */
+    padding: 15px 20px;
+    position: relative;
+    z-index: 1001;
+    flex-shrink: 0;
+    min-height: 50px; /* Cukup ruang untuk ikon panah */
+}
+
+.back-icon {
+    color: var(--primary-text-color);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+    z-index: 1002; /* Pastikan back button clickable */
+    margin-right: auto; /* Dorong ikon ke kiri, tidak ada konten lain di header ini */
+}
+
+.back-icon:hover {
+    color: var(--accent-text-color);
+}
+
+.back-icon svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2;
+}
+
+/* Main Content Area */
+.main-content {
+    flex-grow: 1; /* Biarkan main content mengambil sisa ruang vertikal */
+    display: flex;
+    justify-content: center; /* Pusatkan konten horizontal */
+    align-items: center; /* Pusatkan konten vertikal */
+    padding: 20px; /* Padding di sekitar konten */
+    text-align: center; /* Pastikan teks di dalamnya terpusat */
+
+    /* Animasi masuk diterapkan di sini */
+    opacity: 0; /* Awalnya tidak terlihat */
+    transform: translateY(20px); /* Awalnya sedikit di bawah */
+    animation: fadeInSlideUp var(--enter-animation-duration) ease-out forwards;
+}
+
+.center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Pusatkan item di dalam kolom */
+}
+
+/* Style for the large water bottle icon (no circle wrapper) */
+.feather-bottle { /* Target SVG langsung */
+    width: 100px; /* Ukuran ikon botol air */
+    height: 100px;
+    stroke: var(--accent-text-color); /* Warna ikon */
+    stroke-width: 2;
+    fill: none;
+    margin-bottom: 30px; /* Jarak antara ikon dan teks */
+}
+
+.reminder-message-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Pusatkan baris teks */
+}
+
+.reminder-line-1,
+.reminder-line-2,
+.reminder-line-3 { /* Tiga baris teks */
+    font-size: 1.8em; /* Ukuran font untuk pesan */
+    font-weight: 600; /* Semibold */
+    color: var(--primary-text-color);
+    margin: 0; /* Hapus margin default */
+    line-height: 1.2; /* Spasi antar baris */
+}
+
+/* --- Responsiveness --- */
+@media (max-width: 768px) {
+    .page-header {
+        padding: 12px 15px;
+    }
+    .back-icon svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .feather-bottle {
+        width: 80px; /* Ukuran ikon botol air di mobile */
+        height: 80px;
+        margin-bottom: 25px;
+    }
+
+    .reminder-line-1,
+    .reminder-line-2,
+    .reminder-line-3 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 400px) {
+    .page-header {
+        padding: 10px 10px;
+    }
+    .back-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .feather-bottle {
+        width: 70px; /* Ukuran ikon botol air di mobile sangat kecil */
+        height: 70px;
+        margin-bottom: 20px;
+    }
+
+    .reminder-line-1,
+    .reminder-line-2,
+    .reminder-line-3 {
+        font-size: 1.3em;
+    }
+}

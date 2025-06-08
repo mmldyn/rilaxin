@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RILAXIN - Memuat Hasil</title>
+    <link rel="stylesheet" href="hasil.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="page-header" style="display: none;"></header> <main class="main-content enter-animation">
+        <div class="center-content">
+            <h1 class="loading-text">Memuat hasil...</h1>
+            <div class="loading-spinner"></div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 1. Ambil semua data dari sessionStorage
+            const tujuanSehat = sessionStorage.getItem('tujuanSehat');
+            const waktuLuang = sessionStorage.getItem('waktuLuang');
+            const jenisMakanan = sessionStorage.getItem('jenisMakanan');
+
+            let destinationUrl = 'main.html'; // Default ke halaman utama jika ada masalah atau data tidak lengkap
+
+            // Data untuk debugging
+            console.log('--- Memuat Halaman Hasil ---');
+            console.log('Tujuan Sehat:', tujuanSehat);
+            console.log('Waktu Luang:', waktuLuang);
+            console.log('Jenis Makanan:', jenisMakanan);
+
+            // 2. Logika IF/ELSE IF untuk menentukan URL tujuan
+            // =========================================================================
+            // A. Tujuan: Menjaga Kesehatan (menjaga-kesehatan)
+            if (tujuanSehat === 'menjaga-kesehatan') {
+                if (waktuLuang === 'kurang-30-menit') {
+                    if (jenisMakanan === 'alergi-protein') {
+                        destinationUrl = 'menjaga-sehat/menjaga-sehat-30-min-alergi.html';
+                    } else if (jenisMakanan === 'vegetarian-protein') {
+                        destinationUrl = 'menjaga-sehat/menjaga-sehat-30-min-vegan.html';
+                    }
+                } else if (waktuLuang === '30-60-menit') {
+                    if (jenisMakanan === 'alergi-protein') {
+                        destinationUrl = 'menjaga-sehat/menjaga-sehat-60-min-alergi.html';
+                    } else if (jenisMakanan === 'vegetarian-protein') {
+                        destinationUrl = 'menjaga-sehat/menjaga-sehat-60-min-vegan.html';
+                    }
+                }
+            }
+            // B. Tujuan: Menaikan berat badan (menaikan-berat-badan)
+            else if (tujuanSehat === 'menaikan-berat-badan') {
+                if (waktuLuang === 'kurang-30-menit') {
+                    if (jenisMakanan === 'alergi-protein') {
+                        destinationUrl = 'naikin-bb/bb-naik-30-min-alergi.html';
+                    } else if (jenisMakanan === 'vegetarian-protein') {
+                        destinationUrl = 'naikin-bb/bb-naik-30-min-vegan.html';
+                    }
+                } else if (waktuLuang === '30-60-menit') {
+                    if (jenisMakanan === 'alergi-protein') {
+                        destinationUrl = 'naikin-bb/bb-naik-60-min-alergi.html';
+                    } else if (jenisMakanan === 'vegetarian-protein') {
+                        destinationUrl = 'naikin-bb/bb-naik-60-min-vegan.html';
+                    }
+                }
+            }
+            // C. Tujuan: Menurunkan berat badan (menurunkan-berat-badan)
+            else if (tujuanSehat === 'menurunkan-berat-badan') {
+                if (waktuLuang === 'kurang-30-menit') {
+                    if (jenisMakanan === 'alergi-protein') {
+                        destinationUrl = 'turun-bb/turun-bb-30-min-alergi.html';
+                    } else if (jenisMakanan === 'vegetarian-protein') {
+                        destinationUrl = 'turun-bb/turun-bb-30-min-vegan.html';
+                    }
+                } else if (waktuLuang === '30-60-menit') {
+                    if (jenisMakanan === 'alergi-protein') {
+                        destinationUrl = 'turun-bb/turun-bb-60-min-alergi.html';
+                    } else if (jenisMakanan === 'vegetarian-protein') {
+                        destinationUrl = 'turun-bb/turun-bb-60-min-vegan.html';
+                    }
+                }
+            }
+            // =========================================================================
+            // Jika ada kasus di mana data tidak ditemukan atau kombinasi tidak terduga,
+            // destinationUrl akan tetap main.html (default)
+
+            console.log('Mengarahkan ke:', destinationUrl);
+
+            // TAMBAHKAN DELAY DI SINI SEBELUM REDIRECT
+            setTimeout(() => {
+                window.location.replace(destinationUrl);
+            }, 3000); // 3000 milidetik = 3 detik
+        });
+    </script>
+</body>
+</html>

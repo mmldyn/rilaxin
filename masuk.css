@@ -1,0 +1,269 @@
+/* Palet warna SAMA PERSIS dengan gambar "tampilan awal.png" dan "masuk.png" */
+:root {
+    --primary-background-color: #D1DCEB; /* Background biru keunguan muda */
+    --primary-text-color: #333333; /* Teks default (hitam pekat) */
+    --accent-text-color: #374785; /* Teks biru keunguan gelap untuk "RILAXIN" / heading */
+    --card-background-color: #FFFFFF; /* Latar belakang kartu login putih */
+    --input-border-color: #A9B8D0; /* Warna border input field dan tombol */
+    --input-label-color: #555555; /* Warna label input field */
+    --submit-button-bg: #E0E0E0; /* Background tombol submit (abu-abu terang) */
+    --submit-button-text: #555555; /* Warna teks tombol submit (abu-abu gelap) */
+    --placeholder-color: #A0A0A0; /* Warna placeholder */
+
+    /* Durasi Animasi */
+    --enter-animation-duration: 800ms;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: var(--primary-background-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    box-sizing: border-box;
+    overflow: hidden; /* Penting untuk animasi slide up */
+}
+
+/* Header Styling */
+.page-header {
+    display: flex;
+    align-items: center; /* Memusatkan item secara vertikal di header */
+    justify-content: space-between; /* Sebarkan item secara horizontal (back-icon, logo-wrapper, placeholder) */
+    padding: 15px 20px; /* Padding standar */
+    background-color: var(--primary-background-color); /* Pastikan background header sama dengan body */
+    flex-shrink: 0;
+    width: 100%; /* Pastikan header mengambil lebar penuh */
+    position: relative; /* Jika ada elemen lain yang absolute di dalamnya */
+    z-index: 1001;
+}
+
+.back-icon {
+    color: var(--primary-text-color);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+    z-index: 1002; /* Pastikan back button clickable */
+}
+
+.back-icon:hover {
+    color: var(--accent-text-color);
+}
+
+.back-icon svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2;
+}
+
+.header-logo-wrapper {
+    flex-grow: 1; /* Memungkinkan wrapper logo tumbuh untuk mengisi ruang */
+    text-align: center; /* Pusatkan teks logo di dalam wrapper */
+}
+
+.header-logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--accent-text-color);
+    margin: 0; /* Pastikan tidak ada margin yang mengganggu pemusatan */
+    position: relative; /* Penting agar 'top' bekerja */
+    top: 1px; /* Sesuaikan nilai ini (misal 1px, 2px, dst.) untuk pemusatan visual */
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1; /* Penting: Atur line-height agar teks tidak memiliki ruang ekstra di atas/bawah */
+}
+
+.header-placeholder {
+    width: 24px; /* Berikan lebar yang sama dengan ikon kembali agar logo terpusat sempurna */
+    height: 24px; /* Berikan tinggi yang sama */
+}
+
+
+/* Main Content Area */
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    align-items: flex-end; /* Dorong konten ke bawah */
+    justify-content: center; /* Pusatkan horizontal */
+    width: 100%;
+}
+
+.login-card-container {
+    background-color: var(--card-background-color);
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    padding: 30px 20px;
+    width: 100%;
+    max-width: 450px;
+    box-sizing: border-box;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+
+    /* Animasi masuk */
+    opacity: 0; /* Mulai tidak terlihat */
+    transform: translateY(100%); /* Mulai dari luar bawah layar */
+    animation: slideInUp var(--enter-animation-duration) ease-out forwards;
+}
+
+.card-heading {
+    font-size: 2em;
+    font-weight: 700;
+    color: var(--primary-text-color);
+    margin: 0 0 30px 0;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-label {
+    font-size: 0.9em;
+    color: var(--input-label-color);
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.text-input {
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    border-bottom: 1px solid var(--input-border-color);
+    background-color: transparent;
+    font-size: 1em;
+    color: var(--primary-text-color);
+    outline: none;
+}
+
+.text-input::placeholder {
+    color: var(--placeholder-color);
+}
+
+.text-input:focus {
+    border-bottom-color: var(--accent-text-color);
+}
+
+.submit-button {
+    width: 100%;
+    padding: 15px 20px;
+    background-color: var(--submit-button-bg);
+    color: var(--submit-button-text);
+    border: none; /* Hilangkan border default button */
+    border-radius: 12px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    /* --- PROPERTI TAMBAHAN UNTUK <a> SEBAGAI TOMBOL --- */
+    text-decoration: none; /* Hapus garis bawah */
+    display: block; /* Agar mengambil lebar penuh dan padding bekerja */
+    text-align: center; /* Pusatkan teks */
+    box-sizing: border-box; /* Pastikan padding dihitung dalam ukuran elemen */
+    /* --- AKHIR PROPERTI TAMBAHAN --- */
+}
+
+.submit-button:hover {
+    background-color: #C0C0C0; /* Sedikit lebih gelap saat hover */
+}
+
+
+/* --- Keyframes untuk Animasi Masuk (Slide Up dari Bawah) --- */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* --- Responsiveness --- */
+@media (max-width: 768px) {
+    .page-header {
+        padding: 15px 15px; /* Padding standar untuk mobile */
+    }
+
+    .back-icon svg {
+        width: 22px;
+        height: 22px;
+    }
+    .header-logo {
+        font-size: 22px;
+        top: 1px; /* Pertahankan nilai top untuk mobile juga */
+    }
+    .header-placeholder {
+        width: 22px;
+        height: 22px;
+    }
+
+    .login-card-container {
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+        padding: 25px 15px;
+    }
+    .card-heading {
+        font-size: 1.8em;
+        margin-bottom: 25px;
+    }
+    .login-form {
+        gap: 15px;
+    }
+    .input-label {
+        font-size: 0.85em;
+    }
+    .text-input {
+        padding: 8px 0;
+        font-size: 0.95em;
+    }
+    .submit-button {
+        padding: 12px 15px;
+        font-size: 1em;
+        margin-top: 25px;
+    }
+}
+
+@media (max-width: 400px) {
+    .page-header {
+        padding: 12px 10px; /* Padding standar untuk mobile sangat kecil */
+    }
+    .back-icon svg {
+        width: 20px; /* Sesuaikan ukuran ikon kembali */
+        height: 20px;
+    }
+    .header-logo {
+        font-size: 20px;
+        top: 1px; /* Pertahankan nilai top untuk mobile sangat kecil juga */
+    }
+    .header-placeholder {
+        width: 20px;
+        height: 20px;
+    }
+    .login-card-container {
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        padding: 20px 10px;
+    }
+    .card-heading {
+        font-size: 1.6em;
+        margin-bottom: 20px;
+    }
+    .input-label {
+        font-size: 0.8em;
+    }
+    .text-input {
+        font-size: 0.9em;
+    }
+    .submit-button {
+        font-size: 0.95em;
+        margin-top: 20px;
+    }
+}

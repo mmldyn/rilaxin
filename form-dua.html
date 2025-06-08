@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RILAXIN - Formulir Referensi</title>
+    <link rel="stylesheet" href="form-dua.css"> <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="page-header">
+        <a href="form-satu.html" class="back-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+        </a>
+    </header>
+
+    <main class="main-content enter-animation">
+        <div class="top-section">
+            <div class="icon-circle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-plus">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="12" y1="18" x2="12" y2="12"></line>
+                    <line x1="9" y1="15" x2="15" y2="15"></line>
+                </svg>
+            </div>
+            <h1 class="page-title">Formulir Referensi</h1>
+        </div>
+
+        <div class="question-card-container">
+            <div class="question-card">
+                <p class="question-text">Waktu Luang per Hari :</p>
+                <div class="choice-buttons">
+                    <button class="choice-button" data-value="kurang-30-menit">< 30 Menit</button>
+                    <button class="choice-button" data-value="30-60-menit">30 - 60 Menit</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const choiceButtons = document.querySelectorAll('.choice-button');
+
+            choiceButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const selectedTime = this.dataset.value; 
+                    const tujuanSehat = sessionStorage.getItem('tujuanSehat');
+
+                    sessionStorage.setItem('waktuLuang', selectedTime);
+                    console.log('Tujuan Sehat (dari form-satu):', tujuanSehat);
+                    console.log('Waktu Luang dipilih:', selectedTime);
+
+                    window.location.href = 'form-tiga.html';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

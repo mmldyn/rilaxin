@@ -1,0 +1,244 @@
+/* Palet warna SAMA PERSIS dengan gambar "reminder.png" dan palet RILAXIN */
+:root {
+    --primary-background-color: #D1DCEB; /* Background biru keunguan muda */
+    --primary-text-color: #333333;       /* Teks default (hitam pekat) */
+    --accent-text-color: #374785;        /* Teks biru keunguan gelap untuk aksen */
+    --button-bg-color: #E6EBF3;          /* Latar belakang tombol grid (biru keunguan sangat muda) */
+    --button-text-color: #374785;        /* Warna teks tombol grid */
+    --button-icon-color: #374785;        /* Warna ikon tombol grid */
+    --shadow-light: rgba(0, 0, 0, 0.05); /* Bayangan lembut */
+    --shadow-medium: rgba(0, 0, 0, 0.1); /* Bayangan sedang */
+
+    /* Animasi masuk */
+    --enter-animation-duration: 800ms;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: var(--primary-background-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    box-sizing: border-box;
+    overflow: hidden; /* Mencegah scrollbar saat animasi */
+    /* Hapus opacity dan transform dari body, karena animasi diterapkan pada .main-content */
+}
+
+/* Keyframes untuk Animasi Masuk (Fade In & Slide Up) */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Mulai 20px di bawah posisi akhir */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Berakhir di posisi normal */
+    }
+}
+
+/* Header Styling */
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Mengatur item ke kiri */
+    padding: 15px 20px;
+    position: relative;
+    z-index: 1001;
+    flex-shrink: 0;
+    min-height: 50px;
+}
+
+.back-icon {
+    color: var(--primary-text-color);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+    z-index: 1002; /* Pastikan back button clickable */
+    margin-right: 20px; /* Jarak antara ikon kembali dan konten header */
+}
+
+.back-icon:hover {
+    color: var(--accent-text-color);
+}
+
+.back-icon svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Memusatkan ikon bel dan teks "Reminder" */
+    flex-grow: 1; /* Biarkan konten ini mengisi sisa ruang */
+    /* margin-left negatif untuk mengimbangi back-icon jika perlu */
+    margin-left: -44px; /* Estimasi visual untuk memusatkan 'Reminder' di sebelah bell icon, mengimbangi back-icon */
+}
+
+.bell-icon-header svg {
+    width: 40px; /* KOREKSI UKURAN IKON BEL: 40px (sesuai gambar) */
+    height: 40px; /* KOREKSI UKURAN IKON BEL: 40px (sesuai gambar) */
+    stroke: var(--primary-text-color); /* Warna hitam pekat */
+    stroke-width: 2;
+    fill: none;
+    margin-right: 10px; /* Jarak antara ikon bel dan teks "Reminder" */
+    margin-top: 0; /* KOREKSI MARGIN-TOP: Hapus margin-top yang tidak perlu */
+}
+
+.page-title {
+    font-size: 1.5em; /* Ukuran judul "Reminder" */
+    font-weight: 600; /* Semibold */
+    color: var(--primary-text-color);
+    margin: 0;
+}
+
+/* Main Content Area */
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center; /* Pusatkan grid horizontal */
+    align-items: center; /* Pusatkan grid vertikal */
+    padding: 20px; /* Padding di sekitar grid */
+
+    /* Animasi masuk diterapkan di sini */
+    opacity: 0; /* Awalnya tidak terlihat */
+    transform: translateY(20px); /* Awalnya sedikit di bawah */
+    animation: fadeInSlideUp var(--enter-animation-duration) ease-out forwards;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 kolom yang sama lebar */
+    gap: 20px; /* Jarak antar item grid */
+    max-width: 400px; /* Batasi lebar total grid */
+    width: 100%; /* Pastikan mengambil lebar penuh di dalam max-width */
+}
+
+.menu-item {
+    display: flex;
+    flex-direction: column; /* Ikon di atas teks */
+    justify-content: center; /* Pusatkan ikon dan teks vertikal */
+    align-items: center; /* Pusatkan ikon dan teks horizontal */
+    padding: 20px; /* Padding di dalam kotak menu */
+    background-color: var(--button-bg-color); /* Latar belakang tombol */
+    color: var(--button-text-color); /* Warna teks tombol */
+    text-decoration: none; /* Hapus underline default <a> */
+    border-radius: 15px; /* Sudut membulat item grid */
+    box-shadow: 0 2px 5px var(--shadow-light); /* Bayangan lembut */
+    aspect-ratio: 1 / 1; /* Pastikan kotak selalu persegi */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease-out;
+    box-sizing: border-box; /* Pastikan padding dihitung dalam ukuran total */
+}
+
+.menu-item:hover {
+    background-color: #D3DBE7; /* Sedikit lebih gelap saat hover */
+    box-shadow: 0 4px 8px var(--shadow-medium);
+    transform: translateY(-2px); /* Sedikit naik */
+}
+
+.menu-item:active {
+    background-color: #C0C0C0; /* Lebih gelap saat ditekan */
+    transform: translateY(0);
+    box-shadow: 0 1px 3px var(--shadow-light);
+}
+
+.menu-item svg {
+    width: 50px; /* Ukuran ikon di dalam kotak */
+    height: 50px;
+    stroke: var(--button-icon-color);
+    stroke-width: 2;
+    fill: none;
+    margin-bottom: 10px; /* Jarak antara ikon dan teks */
+}
+
+.item-text {
+    font-size: 1em;
+    font-weight: 500; /* Medium weight */
+    text-align: center;
+}
+
+
+/* --- Responsiveness --- */
+@media (max-width: 768px) {
+    .page-header {
+        padding: 12px 15px;
+    }
+    .back-icon svg {
+        width: 22px;
+        height: 22px;
+    }
+    .header-content {
+        margin-left: -30px; /* Sesuaikan offset untuk mobile */
+    }
+    .bell-icon-header svg {
+        width: 35px; /* KOREKSI UKURAN IKON BEL UNTUK MOBILE */
+        height: 35px; /* KOREKSI UKURAN IKON BEL UNTUK MOBILE */
+        margin-right: 8px;
+        margin-top: 0; /* KOREKSI MARGIN-TOP UNTUK MOBILE */
+    }
+    .page-title {
+        font-size: 1.4em;
+    }
+
+    .main-content {
+        padding: 15px;
+    }
+
+    .grid-container {
+        gap: 15px;
+        max-width: 350px;
+    }
+
+    .menu-item {
+        padding: 15px;
+        border-radius: 12px;
+    }
+
+    .menu-item svg {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 8px;
+    }
+    .item-text {
+        font-size: 0.95em;
+    }
+}
+
+@media (max-width: 400px) {
+    .page-header {
+        padding: 10px 10px;
+    }
+    .header-content {
+        margin-left: -20px;
+    }
+    .bell-icon-header svg {
+        width: 30px; /* KOREKSI UKURAN IKON BEL UNTUK MOBILE SANGAT KECIL */
+        height: 30px; /* KOREKSI UKURAN IKON BEL UNTUK MOBILE SANGAT KECIL */
+        margin-right: 6px;
+        margin-top: 0; /* KOREKSI MARGIN-TOP UNTUK MOBILE SANGAT KECIL */
+    }
+    .page-title {
+        font-size: 1.3em;
+    }
+
+    .main-content {
+        padding: 10px;
+    }
+    .grid-container {
+        gap: 10px;
+        max-width: 300px;
+    }
+    .menu-item {
+        padding: 12px;
+        border-radius: 10px;
+    }
+    .menu-item svg {
+        width: 35px;
+        height: 35px;
+        margin-bottom: 6px;
+    }
+    .item-text {
+        font-size: 0.9em;
+    }
+}

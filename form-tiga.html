@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RILAXIN - Formulir Referensi</title>
+    <link rel="stylesheet" href="form-tiga.css"> <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="page-header">
+        <a href="form-dua.html" class="back-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+        </a>
+    </header>
+
+    <main class="main-content enter-animation">
+        <div class="top-section">
+            <div class="icon-circle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-plus">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="12" y1="18" x2="12" y2="12"></line>
+                    <line x1="9" y1="15" x2="15" y2="15"></line>
+                </svg>
+            </div>
+            <h1 class="page-title">Formulir Referensi</h1>
+        </div>
+
+        <div class="question-card-container">
+            <div class="question-card">
+                <p class="question-text">Jenis Makanan :</p>
+                <div class="choice-buttons">
+                    <button class="choice-button" data-value="alergi-protein">Alergi Protein</button>
+                    <button class="choice-button" data-value="vegetarian-protein">Vegetarian & Protein</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const choiceButtons = document.querySelectorAll('.choice-button');
+
+            choiceButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const selectedFoodType = this.dataset.value; 
+                    
+                    const tujuanSehat = sessionStorage.getItem('tujuanSehat');
+                    const waktuLuang = sessionStorage.getItem('waktuLuang');
+
+                    sessionStorage.setItem('jenisMakanan', selectedFoodType);
+
+                    console.log('Data yang terkumpul:');
+                    console.log('Tujuan Sehat:', tujuanSehat);
+                    console.log('Waktu Luang:', waktuLuang);
+                    console.log('Jenis Makanan:', selectedFoodType);
+
+                    window.location.href = 'hasil.html';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

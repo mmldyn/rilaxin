@@ -1,0 +1,110 @@
+/* Palet warna SAMA PERSIS dengan palet RILAXIN */
+:root {
+    --primary-background-color: #D1DCEB; /* Background biru keunguan muda */
+    --primary-text-color: #333333;       /* Teks default (hitam pekat) */
+    --accent-text-color: #374785;        /* Teks biru keunguan gelap untuk aksen */
+    --shadow-light: rgba(0, 0, 0, 0.05); /* Bayangan lembut */
+    --enter-animation-duration: 800ms;   /* Durasi animasi masuk */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: var(--primary-background-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    box-sizing: border-box;
+    overflow: hidden; /* Mencegah scrollbar saat animasi */
+}
+
+/* Keyframes untuk Animasi Masuk (Fade In & Slide Up) */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Mulai 20px di bawah posisi akhir */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Berakhir di posisi normal */
+    }
+}
+
+/* Header Styling (kosong karena tidak ada di halaman ini) */
+.page-header {
+    display: none; /* Sembunyikan header jika tidak ada konten */
+}
+
+/* Main Content Area */
+.main-content {
+    flex-grow: 1; /* Biarkan main content mengambil sisa ruang vertikal */
+    display: flex;
+    justify-content: center; /* Pusatkan konten horizontal */
+    align-items: center; /* Pusatkan konten vertikal */
+    padding: 20px; /* Padding di sekitar konten */
+    text-align: center; /* Pastikan teks di dalamnya terpusat */
+
+    /* Animasi masuk diterapkan di sini */
+    opacity: 0; /* Awalnya tidak terlihat */
+    transform: translateY(20px); /* Awalnya sedikit di bawah */
+    animation: fadeInSlideUp var(--enter-animation-duration) ease-out forwards;
+}
+
+.center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Pusatkan item di dalam kolom */
+    width: 100%; /* Agar child elements bisa pakai max-width */
+    max-width: 400px; /* Batasi lebar konten */
+}
+
+.loading-text {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: var(--primary-text-color);
+    margin: 0;
+}
+
+/* Opsi untuk spinner loading (animasi CSS sederhana) */
+.loading-spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-top: 4px solid var(--accent-text-color);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin-top: 15px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+/* --- Responsiveness --- */
+@media (max-width: 768px) {
+    .main-content {
+        padding: 15px;
+    }
+    .loading-text {
+        font-size: 1.4em;
+    }
+    .loading-spinner {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+@media (max-width: 400px) {
+    .main-content {
+        padding: 10px;
+    }
+    .loading-text {
+        font-size: 1.3em;
+    }
+    .loading-spinner {
+        width: 20px;
+        height: 20px;
+    }
+}

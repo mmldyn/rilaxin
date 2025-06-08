@@ -1,0 +1,292 @@
+/* Palet warna SAMA PERSIS dengan gambar "4.png" dan palet RILAXIN */
+:root {
+    --primary-background-color: #D1DCEB; /* Background biru keunguan muda */
+    --primary-text-color: #333333;       /* Teks default (hitam pekat) */
+    --accent-text-color: #374785;        /* Teks biru keunguan gelap untuk aksen (judul, ikon) */
+    --card-background-color: #F0F2F5;    /* Latar belakang kartu pertanyaan (abu-abu muda) */
+    --button-choice-bg: #FFFFFF;         /* Background tombol pilihan putih */
+    --button-choice-text: #333333;       /* Teks tombol pilihan */
+    --button-choice-border: #A9B8D0;     /* Border tombol pilihan */
+    --shadow-light: rgba(0, 0, 0, 0.05); /* Bayangan lembut */
+    --shadow-medium: rgba(0, 0, 0, 0.1); /* Bayangan sedikit lebih kuat */
+    --enter-animation-duration: 800ms; /* Durasi animasi */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: var(--primary-background-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    box-sizing: border-box;
+    overflow: hidden; /* Penting untuk mencegah scrollbar saat slide up */
+    /* Hapus opacity dan transform dari body */
+}
+
+/* Keyframes untuk Animasi Masuk (Fade In & Slide Up) */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Mulai 20px di bawah posisi akhir */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Berakhir di posisi normal */
+    }
+}
+
+/* Target animasi sekarang adalah .main-content.enter-animation */
+.main-content.enter-animation {
+    opacity: 0; /* Awalnya tidak terlihat */
+    transform: translateY(20px); /* Awalnya sedikit di bawah */
+    animation: fadeInSlideUp var(--enter-animation-duration) ease-out forwards;
+    
+    /* Properti dasar Flexbox yang sudah ada di .main-content */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Pusatkan konten horizontal */
+    flex-grow: 1;
+    width: 100%;
+    padding: 0 20px 20px 20px; /* Padding bawah untuk menjaga spasi */
+    box-sizing: border-box; /* Penting untuk padding */
+}
+
+/* Header Styling (konsisten dengan form sebelumnya) */
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Hanya ikon di kiri */
+    padding: 15px 20px;
+    position: relative;
+    z-index: 1001;
+    flex-shrink: 0;
+    min-height: 50px;
+}
+
+.back-icon {
+    color: var(--primary-text-color);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+    z-index: 1002; /* Pastikan back button clickable */
+    margin-right: auto;
+}
+
+.back-icon:hover {
+    color: var(--accent-text-color);
+}
+
+.back-icon svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2;
+}
+
+/* Main Content Area - (properti dasar .main-content) */
+.main-content { /* Properti dasar untuk .main-content (tanpa animasi) */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Pusatkan konten horizontal */
+    padding: 0 20px 20px 20px; /* Padding bawah untuk menjaga spasi */
+    width: 100%; /* Pastikan ini 100% untuk pemusatan yang benar */
+    box-sizing: border-box; /* Penting untuk padding */
+}
+
+.top-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px; /* Jarak dari atas (estimasi visual) */
+    margin-bottom: 30px; /* Jarak ke kartu pertanyaan */
+}
+
+.icon-circle {
+    width: 80px; /* Ukuran lingkaran ikon */
+    height: 80px;
+    background-color: transparent; /* Transparan, ikon di dalamnya */
+    border: 2px solid var(--accent-text-color); /* Border biru keunguan gelap */
+    border-radius: 50%; /* Bentuk lingkaran */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px; /* Jarak ke judul */
+    box-shadow: 0 2px 5px var(--shadow-light); /* Bayangan lembut */
+}
+
+.icon-circle svg {
+    width: 48px; /* Ukuran ikon di dalam lingkaran */
+    height: 48px;
+    stroke: var(--accent-text-color); /* Warna ikon */
+    stroke-width: 2;
+    fill: none;
+}
+
+.page-title {
+    font-size: 1.5em; /* Ukuran judul "Formulir referensi" */
+    font-weight: 600; /* Semibold */
+    color: var(--primary-text-color);
+    margin: 0;
+    text-align: center;
+}
+
+.question-card-container {
+    flex-grow: 1; /* Biarkan container kartu mengisi sisa ruang */
+    display: flex;
+    align-items: center; /* Pusatkan kartu vertikal di sisa ruang */
+    justify-content: center; /* Pusatkan kartu horizontal di sisa ruang */
+    width: 100%; /* Pastikan ini 100% untuk pemusatan yang benar */
+    box-sizing: border-box; /* Penting untuk padding */
+}
+
+.question-card {
+    background-color: var(--card-background-color); /* Latar belakang kartu abu-abu muda */
+    border-radius: 15px; /* Sudut membulat kartu */
+    padding: 30px 25px; /* Padding di dalam kartu */
+    width: 100%;
+    max-width: 350px; /* Batasi lebar kartu */
+    box-sizing: border-box;
+    box-shadow: 0 4px 10px var(--shadow-light); /* Bayangan kartu */
+
+    display: flex;
+    flex-direction: column; /* Konten di dalam kartu akan disusun vertikal */
+    align-items: center; /* Pusatkan item secara horizontal di dalam kartu */
+}
+
+.question-text {
+    font-size: 1.2em; /* Ukuran teks pertanyaan */
+    font-weight: 600; /* Semibold */
+    color: var(--primary-text-color);
+    margin: 0 0 25px 0; /* Jarak ke tombol pilihan */
+    text-align: center; /* Pastikan teks pertanyaan terpusat */
+    width: 100%; /* Pastikan teks mengambil lebar penuh untuk pemusatan */
+}
+
+.choice-buttons {
+    display: flex;
+    flex-direction: column; /* Tombol tersusun vertikal */
+    gap: 15px; /* Jarak antar tombol */
+    width: 100%; /* Pastikan kontainer tombol mengambil lebar penuh kartu */
+}
+
+.choice-button {
+    font-family: 'Poppins', sans-serif;
+    width: 100%; /* Tombol mengambil lebar penuh dari parent (.choice-buttons) */
+    padding: 15px 20px;
+    background-color: var(--button-choice-bg);
+    color: var(--button-choice-text);
+    border: 1px solid var(--button-choice-border);
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease-out;
+}
+
+.choice-button:hover {
+    background-color: #F8F9FB;
+    box-shadow: 0 2px 5px var(--shadow-light);
+    transform: translateY(-2px);
+}
+
+.choice-button:active {
+    background-color: #E0E0E0;
+    transform: translateY(0);
+    box-shadow: 0 1px 3px var(--shadow-light);
+}
+
+/* --- Responsiveness --- */
+@media (max-width: 768px) {
+    .page-header {
+        padding: 12px 15px;
+    }
+    .back-icon svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .main-content {
+        padding: 0 15px 15px 15px; /* Sesuaikan padding samping untuk mobile */
+    }
+
+    .top-section {
+        margin-top: 40px;
+        margin-bottom: 25px;
+    }
+    .icon-circle {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 12px;
+    }
+    .icon-circle svg {
+        width: 40px;
+        height: 40px;
+    }
+    .page-title {
+        font-size: 1.4em;
+    }
+
+    .question-card {
+        padding: 25px 20px;
+        max-width: 320px;
+        border-radius: 12px;
+    }
+    .question-text {
+        font-size: 1.1em;
+        margin-bottom: 20px;
+    }
+    .choice-buttons {
+        gap: 12px;
+    }
+    .choice-button {
+        padding: 12px 18px;
+        font-size: 0.95em;
+        border-radius: 8px;
+    }
+}
+
+@media (max-width: 400px) {
+    .page-header {
+        padding: 10px 10px;
+    }
+    .back-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .main-content {
+        padding: 0 10px 10px 10px; /* Lebih kecil lagi padding samping */
+    }
+
+    .top-section {
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+    .icon-circle {
+        width: 60px;
+        height: 60px;
+    }
+    .icon-circle svg {
+        width: 35px;
+        height: 35px;
+    }
+    .page-title {
+        font-size: 1.3em;
+    }
+
+    .question-card {
+        padding: 20px 15px;
+        max-width: 280px;
+    }
+    .question-text {
+        font-size: 1em;
+        margin-bottom: 18px;
+    }
+    .choice-buttons {
+        gap: 10px;
+    }
+    .choice-button {
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+}

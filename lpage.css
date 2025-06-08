@@ -1,0 +1,174 @@
+/* Palet warna SAMA PERSIS dengan gambar "tampilan awal.png" dan "mulai.png" */
+:root {
+    --primary-background-color: #D1DCEB; /* Background biru keunguan muda */
+    --primary-text-color: #333333; /* Teks default (hitam pekat) */
+    --accent-text-color: #374785; /* Teks biru keunguan gelap untuk "RILAXIN" / heading */
+    --button-bg-color: #FFFFFF; /* Background tombol putih */
+    --button-border-color: #A9B8D0; /* Border tombol abu-abu keunguan muda (estimasi dari gambar) */
+    --button-text-color: #333333; /* Warna teks tombol */
+    --secondary-subtext-color: #555555; /* Warna teks sub-heading (estimasi) */
+
+    /* Durasi Animasi */
+    --enter-animation-duration: 800ms;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: var(--primary-background-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden; /* Penting untuk mencegah scrollbar saat slide up */
+    opacity: 1; /* Default opacity 1, animasi akan mengubahnya */
+    transform: translateY(0); /* Default transform 0, animasi akan mengubahnya */
+}
+
+/* Keyframes untuk Animasi Masuk (Fade In & Slide Up) */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Mulai 20px di bawah posisi akhir */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Berakhir di posisi normal */
+    }
+}
+
+.container { /* Target animasi: .container */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    flex-grow: 1;
+    padding-top: 80px;
+    padding-bottom: 80px;
+
+    /* Terapkan animasi di sini */
+    opacity: 0; /* Awalnya tidak terlihat */
+    transform: translateY(20px); /* Awalnya sedikit di bawah */
+    animation: fadeInSlideUp var(--enter-animation-duration) ease-out forwards;
+}
+
+
+.welcome-text-section {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.welcome-heading {
+    font-size: 2.2em;
+    font-weight: 700;
+    color: var(--primary-text-color);
+    margin: 0 0 10px 0;
+}
+
+.welcome-subtext {
+    font-size: 1.1em;
+    font-weight: 400;
+    color: var(--secondary-subtext-color);
+    margin: 0;
+}
+
+.button-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.action-button {
+    width: 100%;
+    padding: 15px 20px;
+    border: 1px solid var(--button-border-color);
+    border-radius: 12px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    
+    text-decoration: none; /* Hapus underline default */
+    display: block; /* Agar width 100% dan padding berfungsi seperti block element */
+    text-align: center; /* Pusatkan teks di dalam link */
+    box-sizing: border-box; /* Pastikan padding dihitung dalam width */
+}
+
+.primary-button {
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+}
+
+.primary-button:hover {
+    background-color: var(--button-border-color);
+}
+
+.secondary-button {
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+}
+
+.secondary-button:hover {
+    background-color: var(--button-border-color);
+}
+
+/* --- Responsiveness --- */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    .container {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    .welcome-text-section {
+        margin-bottom: 40px;
+    }
+
+    .welcome-heading {
+        font-size: 2em;
+    }
+
+    .welcome-subtext {
+        font-size: 1em;
+    }
+
+    .button-section {
+        gap: 12px;
+    }
+
+    .action-button {
+        padding: 12px 15px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 400px) {
+    .container {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    .welcome-text-section {
+        margin-bottom: 30px;
+    }
+    .welcome-heading {
+        font-size: 1.8em;
+    }
+    .welcome-subtext {
+        font-size: 0.9em;
+    }
+    .button-section {
+        gap: 10px;
+    }
+    .action-button {
+        font-size: 0.95em;
+    }
+}

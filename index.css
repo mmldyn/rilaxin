@@ -1,0 +1,43 @@
+/* Palet warna SAMA PERSIS dengan gambar "tampilan awal.png" */
+:root {
+    --splash-background-color: #D1DCEB; /* Background biru keunguan muda */
+    --splash-text-color: #374785;       /* Teks biru keunguan gelap */
+}
+
+body {
+    font-family: 'Poppins', sans-serif; /* Font yang bersih dan terbaca */
+    margin: 0;
+    background-color: var(--splash-background-color); /* Warna background sesuai gambar */
+    display: flex;
+    justify-content: center; /* Pusatkan horizontal */
+    align-items: center; /* Pusatkan vertikal */
+    height: 100vh; /* Memastikan body mengisi seluruh tinggi viewport */
+    overflow: hidden; /* Mencegah scrollbar */
+}
+
+.splash-container {
+    text-align: center; /* Pusatkan teks di dalam kontainer */
+}
+
+.splash-text {
+    font-size: 3em; /* Ukuran font yang besar, mirip dengan gambar */
+    font-weight: 700; /* Bold, sesuai dengan visual di gambar */
+    color: var(--splash-text-color); /* Warna teks sesuai gambar */
+    margin: 0; /* Hapus margin default h1 */
+    letter-spacing: 0.05em; /* Sedikit spasi antar huruf untuk tampilan yang lebih rapi */
+    text-transform: uppercase; /* Mengubah teks menjadi huruf kapital (opsional, jika ingin lebih mirip) */
+}
+
+/* --- Responsiveness for mobile devices (like iPhone 16 Pro Max) --- */
+@media (max-width: 768px) {
+    .splash-text {
+        font-size: 2.5em; /* Sedikit lebih kecil untuk layar mobile */
+        letter-spacing: 0.04em; /* Spasi antar huruf sedikit disesuaikan */
+    }
+}
+
+@media (max-width: 480px) {
+    .splash-text {
+        font-size: 2em; /* Lebih kecil lagi untuk ponsel yang sangat kecil */
+    }
+}

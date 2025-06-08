@@ -1,0 +1,227 @@
+/* Palet warna SAMA PERSIS dengan gambar "bb naik, 30 min, vegan.png" dan palet RILAXIN */
+:root {
+    --primary-background-color: #D1DCEB; /* Background biru keunguan muda */
+    --primary-text-color: #333333;       /* Teks default (hitam pekat) */
+    --accent-text-color: #374785;        /* Teks biru keunguan gelap untuk aksen (ikon header) */
+    --card-background-color: #A9B8D0;    /* Latar belakang kartu (biru keunguan sedang) */
+    --card-title-color: #333333;         /* Warna judul kartu (hitam pekat) */
+    --card-detail-text-color: #FFFFFF;   /* Warna teks detail kartu (putih) */
+    --shadow-light: rgba(0, 0, 0, 0.05); /* Bayangan lembut */
+    --shadow-medium: rgba(0, 0, 0, 0.1); /* Bayangan sedang */
+
+    /* Animasi masuk */
+    --enter-animation-duration: 800ms;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: var(--primary-background-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    box-sizing: border-box;
+    overflow: hidden; /* Mencegah scrollbar saat animasi */
+}
+
+/* Keyframes untuk Animasi Masuk (Fade In & Slide Up) */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Mulai 20px di bawah posisi akhir */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Berakhir di posisi normal */
+    }
+}
+
+/* Header Styling (konsisten dengan halaman lain) */
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Mengatur item ke kiri */
+    padding: 15px 20px;
+    position: relative;
+    z-index: 1001;
+    flex-shrink: 0;
+    min-height: 50px;
+}
+
+.back-icon {
+    color: var(--primary-text-color);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+    z-index: 1002; /* Pastikan back button clickable */
+    margin-right: 20px; /* Jarak antara ikon kembali dan konten header */
+}
+
+.back-icon:hover {
+    color: var(--accent-text-color);
+}
+
+.back-icon svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Memusatkan ikon dan teks judul */
+    flex-grow: 1; /* Biarkan konten ini mengisi sisa ruang */
+    /* Menggunakan margin-left negatif untuk mengimbangi back-icon jika perlu */
+    margin-left: -44px; /* Estimasi visual untuk memusatkan header content, mengimbangi back-icon */
+}
+
+.header-icon svg {
+    width: 40px; /* Ukuran ikon di header */
+    height: 40px;
+    stroke: var(--accent-text-color); /* Warna ikon */
+    stroke-width: 2;
+    fill: none;
+    margin-right: 10px; /* Jarak antara ikon dan teks judul */
+}
+
+.page-title {
+    font-size: 1.5em; /* Ukuran judul "Rekomendasi SehatMu" */
+    font-weight: 600; /* Semibold */
+    color: var(--primary-text-color);
+    margin: 0;
+    text-align: center;
+    line-height: 1.2; /* Spasi antar baris jika judul multi-baris */
+}
+
+/* Main Content Area */
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center; /* Pusatkan konten horizontal */
+    align-items: center; /* Pusatkan konten vertikal */
+    padding: 20px; /* Padding di sekitar konten */
+    text-align: center; /* Pastikan teks di dalamnya terpusat */
+
+    /* Animasi masuk diterapkan di sini */
+    opacity: 0; /* Awalnya tidak terlihat */
+    transform: translateY(20px); /* Awalnya sedikit di bawah */
+    animation: fadeInSlideUp var(--enter-animation-duration) ease-out forwards;
+}
+
+.recommendation-card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Jarak antar kartu */
+    width: 100%;
+    max-width: 400px; /* Batasi lebar container kartu */
+    box-sizing: border-box;
+}
+
+.recommendation-card {
+    background-color: var(--card-background-color); /* Latar belakang kartu */
+    border-radius: 15px; /* Sudut membulat kartu */
+    padding: 25px; /* Padding di dalam kartu */
+    box-shadow: 0 4px 10px var(--shadow-light); /* Bayangan kartu */
+    box-sizing: border-box;
+    text-align: center; /* Teks di dalam kartu rata kiri */
+}
+
+.card-title {
+    font-size: 1.3em; /* Ukuran judul kartu (Makanan, Olahraga) */
+    font-weight: 600; /* Semibold */
+    color: var(--card-title-color);
+    margin: 0 0 15px 0; /* Jarak ke detail */
+    text-align: center; /* Judul kartu terpusat */
+}
+
+.card-details p {
+    font-size: 0.95em; /* Ukuran teks detail */
+    font-weight: 400; /* Regular */
+    color: var(--card-detail-text-color); /* Warna teks detail kartu */
+    margin: 0 0 5px 0; /* Jarak antar baris detail */
+    line-height: 1.4;
+}
+
+.card-details p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* --- Responsiveness --- */
+@media (max-width: 768px) {
+    .page-header {
+        padding: 12px 15px;
+    }
+    .back-icon svg {
+        width: 22px;
+        height: 22px;
+    }
+    .header-content {
+        margin-left: -30px;
+    }
+    .header-icon svg {
+        width: 35px;
+        height: 35px;
+        margin-right: 8px;
+    }
+    .page-title {
+        font-size: 1.4em;
+    }
+
+    .main-content {
+        padding: 15px;
+    }
+
+    .recommendation-card-container {
+        gap: 15px;
+        max-width: 350px;
+    }
+    .recommendation-card {
+        padding: 20px;
+        border-radius: 12px;
+    }
+    .card-title {
+        font-size: 1.2em;
+        margin-bottom: 12px;
+    }
+    .card-details p {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 400px) {
+    .page-header {
+        padding: 10px 10px;
+    }
+    .header-content {
+        margin-left: -20px;
+    }
+    .header-icon svg {
+        width: 30px;
+        height: 30px;
+        margin-right: 6px;
+    }
+    .page-title {
+        font-size: 1.3em;
+    }
+
+    .main-content {
+        padding: 10px;
+    }
+
+    .recommendation-card-container {
+        gap: 12px;
+        max-width: 300px;
+    }
+    .recommendation-card {
+        padding: 18px;
+        border-radius: 10px;
+    }
+    .card-title {
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+    .card-details p {
+        font-size: 0.85em;
+    }
+}
